@@ -1,12 +1,10 @@
 ﻿@model NewsAdministration.Country
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Edit Country";
 }
 
-<h1>Edit</h1>
-
-<h4>Country</h4>
+<h4 class="mt-4">Edit Country</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -14,7 +12,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="CountriesId" />
             <div class="form-group">
-                <label asp-for="ContriesName" class="control-label"></label>
+                <label asp-for="ContriesName" class="control-label font-weight-bold">Country Name</label>
                 <input asp-for="ContriesName" class="form-control" />
                 <span asp-validation-for="ContriesName" class="text-danger"></span>
             </div>

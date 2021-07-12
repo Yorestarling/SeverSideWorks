@@ -4,32 +4,46 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
+<div class="d-flex align-items-center">
+    <div class="flex-grow-1">
+        <h1 class="mt-3">COUNTRIES LIST</h1>
+    </div>
+    <div>
+        <a href="@Url.Action("Create")" class="btn btn-primary ">NEW COUNTRY</a>
+    </div>
+</div>
+
+<div>
+    <form method="get">
+
+        <input name="Search" value="@ViewData["search"]" />
+        <button class="btn btn-primary" type="submit">SEARCH</button>
+    </form>
+    <p>Search by Country</p>
+</div>
+<table class="table table-dark table-sm">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ContriesName)
+               Country Name
             </th>
-            <th></th>
+            <th>Tools</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ContriesName)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.CountriesId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.CountriesId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.CountriesId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContriesName)
+                </td>
+                <td>
+                    <a class="text-white"  asp-action="Edit" asp-route-id="@item.CountriesId">Edit</a> |
+                    <a class="text-white"  asp-action="Details" asp-route-id="@item.CountriesId">Details</a> |
+                    <a class="text-white"  asp-action="Delete" asp-route-id="@item.CountriesId">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

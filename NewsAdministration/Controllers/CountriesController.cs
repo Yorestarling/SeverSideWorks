@@ -18,13 +18,23 @@ namespace NewsAdministration.Controllers
             _context = context;
         }
 
-        // GET: Countries
-        public async Task<IActionResult> Index()
+
+        public async Task<IActionResult> Index(string search = null)
         {
-            return View(await _context.Countries.ToListAsync());
+            ViewData[nameof(search)] = search;
+            if (string.IsNullOrEmpty(search))
+            {
+                return View(await _context.Countries.ToListAsync());
+            }
+            else
+            {
+                return View(await _context.Countries
+                    .Where(a=> a.ContriesName.Contains(search)).
+                    ToListAsync());
+            }
+            
         }
 
-        // GET: Countries/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -42,15 +52,13 @@ namespace NewsAdministration.Controllers
             return View(country);
         }
 
-        // GET: Countries/Create
+
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Countries/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CountriesId,ContriesName")] Country country)
@@ -64,7 +72,7 @@ namespace NewsAdministration.Controllers
             return View(country);
         }
 
-        // GET: Countries/Edit/5
+       
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -80,9 +88,7 @@ namespace NewsAdministration.Controllers
             return View(country);
         }
 
-        // POST: Countries/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+    
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("CountriesId,ContriesName")] Country country)
@@ -115,7 +121,7 @@ namespace NewsAdministration.Controllers
             return View(country);
         }
 
-        // GET: Countries/Delete/5
+   
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -133,7 +139,6 @@ namespace NewsAdministration.Controllers
             return View(country);
         }
 
-        // POST: Countries/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
