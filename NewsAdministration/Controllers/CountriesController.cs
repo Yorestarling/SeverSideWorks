@@ -24,7 +24,12 @@ namespace NewsAdministration.Controllers
             ViewData[nameof(search)] = search;
             if (string.IsNullOrEmpty(search))
             {
-                return View(await _context.Countries.ToListAsync());
+
+             
+
+                return View(await _context.Countries
+                    .OrderBy(a => a.ContriesName).
+                    ToListAsync());
             }
             else
             {

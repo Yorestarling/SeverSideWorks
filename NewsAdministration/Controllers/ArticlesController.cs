@@ -25,7 +25,11 @@ namespace NewsAdministration.Controllers
 
             if (string.IsNullOrEmpty(search))
             {
-                var newsServerSideContext = _context.Articles.Include(a => a.Category).Include(a => a.Countries).Include(a => a.Sources);
+                var newsServerSideContext = _context.Articles
+                    .Include(a => a.Category)
+                    .Include(a => a.Countries)
+                    .Include(a => a.Sources)
+                    .OrderBy(a => a.Author);
                 return View(await newsServerSideContext.ToListAsync());
             }
             else
@@ -34,7 +38,8 @@ namespace NewsAdministration.Controllers
                     .Include(a => a.Category)
                     .Include(a => a.Countries)
                     .Include(a => a.Sources)
-                    .Where(a => a.Author.Contains(search) || a.Sources.SourcesName.Contains(search));
+                    .Where(a => a.Author.Contains(search) || a.Sources.SourcesName.Contains(search))
+                    ;
                 return View(await newsServerSideContext.ToListAsync());
             }
 
