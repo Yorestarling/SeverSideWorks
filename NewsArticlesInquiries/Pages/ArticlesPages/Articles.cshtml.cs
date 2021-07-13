@@ -20,14 +20,44 @@ namespace NewsArticlesInquiries.Pages.ArticlesPages
 
         public IList<Article> Article { get;set; }
 
-        public async Task OnGetAsync()
+        public async Task OnGetAsync(
+            string search = null,
+            string searchcat = null,
+            string searchcou = null,
+            string searchsou = null
+            )
         {
-            Article = await _context.Articles
-                .Include(a => a.Category)
-                .Include(a => a.Countries)
-                .Include(a => a.Sources)
-                .OrderBy(a=> a.PublishedAt).
-                ToListAsync();
+            ViewData[nameof(search)] = search;
+            ViewData[nameof(searchcat)] = searchcat;
+            ViewData[nameof(searchcou)] = searchcou;
+            ViewData[nameof(searchsou)] = searchsou;
+
+            if (string.IsNullOrEmpty(search) 
+                && string.IsNullOrEmpty(searchcat) 
+                && string.IsNullOrEmpty(searchcou) 
+                && string.IsNullOrEmpty(searchsou))
+            {
+                Article = await _context.Articles
+                               .Include(a => a.Category)
+                               .Include(a => a.Countries)
+                               .Include(a => a.Sources)
+                               .OrderBy(a => a.PublishedAt).
+                               ToListAsync();
+            }
+            else
+            {
+                Article = await _context.Articles
+               .Include(a => a.Category)
+               .Include(a => a.Countries)
+               .Include(a => a.Sources)
+               .Where(a=> 
+               a.Author.Contains(search) || 
+               a.Category.CategoryName.Contains(searchcat) || 
+               a.Sources.SourcesName.Contains(searchsou) ||
+               a.Countries.ContriesName.Contains(searchcou)).
+               ToListAsync();
+            }
+           
         }
     }
 }
