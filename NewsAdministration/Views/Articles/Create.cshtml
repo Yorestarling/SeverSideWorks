@@ -4,10 +4,10 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
 
-<h4>Article</h4>
+
 <hr />
+<h4>New Article</h4>
 <div class="row">
     <div class="col-md-12">
         <form asp-action="Create">
@@ -55,16 +55,17 @@
                 </div>
                 <div class="col-3">
                     <div class="form-group">
-                        <label asp-for="PublishedAt" class="control-label">Published At</label>
-                        <input asp-for="PublishedAt" class="form-control" />
+                        <label  asp-for="PublishedAt" class="control-label">Published At</label>
+                        <input type="datetime-local"  asp-for="PublishedAt" class="form-control" />
                         <span asp-validation-for="PublishedAt" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-3">
                     <div class="form-group">
-                        <label asp-for="Content" class="control-label"></label>
-                        <input asp-for="Content" class="form-control" />
-                        <span asp-validation-for="Content" class="text-danger"></span>
+                        <label asp-for="CategoryId" class="control-label">Category Name</label>
+                        <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
+                        <span asp-validation-for="CategoryId" class="text-danger"></span>
+                      
                     </div>
                 </div>
 
@@ -78,17 +79,17 @@
             </div>
 
             <div class="form-row">
-                <div class="col-3">
+                <div class="col-6">
                     <div class="form-group">
-                        <label asp-for="CategoryId" class="control-label">Category Name</label>
-                        <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
-                        <span asp-validation-for="CategoryId" class="text-danger"></span>
+                        <label asp-for="Content" class="control-label"></label>
+                        <input asp-for="Content" class="form-control" />
+                        <span asp-validation-for="Content" class="text-danger"></span>
                     </div>
                 </div>
-                <div class="col-9">
+                <div class="col-6">
                     <div class="form-group">
                         <label asp-for="UlrToImage" class="control-label">Ulr To Image</label>
-                        <input type="file" asp-for="UlrToImage" class="form-control" />
+                        <input  asp-for="UlrToImage" class="form-control" />
                         <span asp-validation-for="UlrToImage" class="text-danger " id="formFile"></span>
                     </div>
                 </div>

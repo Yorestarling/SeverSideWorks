@@ -79,16 +79,16 @@
         <div class="col-12">
             <div class="container5">
                 <div class="card mt-5 form-group" style="width: 40rem; ">
-                    <img src="~/IMG/News.webp" class="card-img-top" alt="...">
+                    <img src="@Url.Content(item.UlrToImage)" class="card-img-top" alt="...">
                     @*<p>@Html.DisplayFor(modelItem => item.Title)</p>*@
                     <div class="card-mb-4">
                         <div class="card-body form-group">
-                            <h6 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h6>
+                            <h6 class="card-title ">@Html.DisplayFor(modelItem => item.Title)</h6>
                             <p class="card-text">@Html.DisplayFor(modelItem => item.Content)</p>
                         </div>
                         <div>
-                            <p class="card-text">@Html.DisplayFor(modelItem => item.PublishedAt) </p>
-                            <p class="card-text">@Html.DisplayFor(modelItem => item.Author) </p>
+                            <p class="card-text ">@Html.DisplayFor(modelItem => item.PublishedAt) </p>
+                            <p class="card-text ">@Html.DisplayFor(modelItem => item.Author) </p>
                             <a href="@Html.DisplayFor(modelItem => item.Ulr)" class="btn btn-primary">Show More</a>
                         </div>
                     </div>

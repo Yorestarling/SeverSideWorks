@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 #nullable disable
@@ -20,6 +21,9 @@ namespace NewsAdministration
         public string Ulr { get; set; }
 
         public string UlrToImage { get; set; }
+
+        [DisplayName("Published At")]
+        [DataType(DataType.DateTime)]
         [Required(ErrorMessage = "Published At is Required")]
         public DateTime? PublishedAt { get; set; }
         [Required(ErrorMessage = "Content is Required")]
@@ -35,5 +39,9 @@ namespace NewsAdministration
         public virtual Category Category { get; set; }
         public virtual Country Countries { get; set; }
         public virtual Source Sources { get; set; }
+
+     
+
+        //public decimal ActualDate { get { return PublishedAt = DateTime.Now; } }
     }
 }
