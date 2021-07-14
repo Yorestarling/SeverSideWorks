@@ -56,8 +56,7 @@ namespace NewsArticlesInquiries.Pages.ArticlesPages
                a.Sources.SourcesName.Contains(searchsou) ||
                a.Countries.ContriesName.Contains(searchcou)).
                ToListAsync();
-            }
-           
+            }       
         }
     }
 }
