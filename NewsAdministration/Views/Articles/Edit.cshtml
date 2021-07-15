@@ -3,6 +3,18 @@
 @{
     ViewData["Title"] = "Edit Article";
 }
+
+<script>
+    tinymce.init({
+      selector: 'textarea',
+      plugins: 'a11ychecker advcode casechange export formatpainter linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tinycomments tinymcespellchecker',
+      toolbar: 'a11ycheck addcomment showcomments casechange checklist code export formatpainter pageembed permanentpen table',
+      toolbar_mode: 'floating',
+      tinycomments_mode: 'embedded',
+      tinycomments_author: 'Author name',
+   });
+</script>
+
 <h4>Edit Articles</h4>
 <hr />
 <form asp-action="Edit" method="post">
@@ -43,9 +55,9 @@
     <div class="form-row">
         <div class="col-3">
             <div class="form-group">
-                <label asp-for="UlrToImage" class="control-label font-weight-bold">Ulr To Image</label>
-                <input asp-for="UlrToImage" class="form-control" />
-                <span asp-validation-for="UlrToImage" class="text-danger"></span>
+                <label asp-for="CategoryId" class="control-label font-weight-bold">Category Name</label>
+                <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
             </div>
         </div>
         <div class="col-3">
@@ -57,9 +69,9 @@
         </div>
         <div class="col-3">
             <div class="form-group">
-                <label asp-for="Content" class="control-label font-weight-bold"></label>
-                <input asp-for="Content" class="form-control" />
-                <span asp-validation-for="Content" class="text-danger"></span>
+                <label asp-for="CountriesId" class="control-label font-weight-bold">Country Name</label>
+                <select asp-for="CountriesId" class="form-control" asp-items="ViewBag.CountriesId"></select>
+                <span asp-validation-for="CountriesId" class="text-danger"></span>
             </div>
         </div>
 
@@ -72,20 +84,21 @@
         </div>
     </div>
 
-
     <div class="form-row">
-        <div class="col-3">
+        <div class="col-12">
             <div class="form-group">
-                <label asp-for="CategoryId" class="control-label font-weight-bold">Category Name</label>
-                <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
-                <span asp-validation-for="CategoryId" class="text-danger"></span>
+                <label asp-for="UlrToImage" class="control-label">Ulr To Image</label>
+                <input asp-for="UlrToImage" class="form-control" />
+                <span asp-validation-for="UlrToImage" class="text-danger " id="formFile"></span>
             </div>
         </div>
-        <div class="col-3">
+    </div>
+    <div class="form-row">
+        <div class="col-12">
             <div class="form-group">
-                <label asp-for="CountriesId" class="control-label font-weight-bold">Country Name</label>
-                <select asp-for="CountriesId" class="form-control" asp-items="ViewBag.CountriesId"></select>
-                <span asp-validation-for="CountriesId" class="text-danger"></span>
+                <label asp-for="Content" class="control-label"></label>
+                <textarea id="create" asp-for="Content" class="form-control"></textarea>
+                <span asp-validation-for="Content" class="text-danger"></span>
             </div>
         </div>
     </div>

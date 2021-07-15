@@ -67,7 +67,10 @@
                     <div class="card-mb-4">
                         <div class="card-body form-group">
                             <h6 class="card-title ">@Html.DisplayFor(modelItem => item.Title)</h6>
-                            <p class="card-text">@Html.DisplayFor(modelItem => item.Content)</p>
+                            <article>
+                                @Html.Raw(item.Content)
+                            </article>
+                            @*<p class="card-text">@Html.DisplayFor(modelItem => item.Content)</p>*@
                         </div>
                         <div>
                             <p class="card-text ">@Html.DisplayFor(modelItem => item.PublishedAt) </p>
