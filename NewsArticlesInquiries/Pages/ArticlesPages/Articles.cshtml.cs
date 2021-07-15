@@ -41,7 +41,7 @@ namespace NewsArticlesInquiries.Pages.ArticlesPages
                                .Include(a => a.Category)
                                .Include(a => a.Countries)
                                .Include(a => a.Sources)
-                               .OrderBy(a => a.PublishedAt).
+                               .OrderByDescending(a => a.PublishedAt).
                                ToListAsync();
             }
             else
