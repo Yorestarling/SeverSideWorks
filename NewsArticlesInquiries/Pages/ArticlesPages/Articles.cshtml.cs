@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using NewsArticlesInquiries;
 
@@ -27,6 +28,9 @@ namespace NewsArticlesInquiries.Pages.ArticlesPages
             string searchsou = null
             )
         {
+
+
+
             ViewData[nameof(search)] = search;
             ViewData[nameof(searchcat)] = searchcat;
             ViewData[nameof(searchcou)] = searchcou;
@@ -56,7 +60,12 @@ namespace NewsArticlesInquiries.Pages.ArticlesPages
                a.Sources.SourcesName.Contains(searchsou) ||
                a.Countries.ContriesName.Contains(searchcou)).
                ToListAsync();
-            }       
+            }
+
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName");
+            ViewData["CountriesId"] = new SelectList(_context.Countries, "CountriesId", "ContriesName");
+            ViewData["SourcesId"] = new SelectList(_context.Sources, "SourcesId", "SourcesName");
+           
         }
     }
 }
